@@ -1,0 +1,26 @@
+.env
+.env.*
+!.env.example
+!backend/.env.example
+*.db
+*.sqlite
+*.sqlite3
+__pycache__/
+.pytest_cache/
+.venv/
+node_modules/
+dist/
+.coverage
+
+# Database backups
+*.bak
+*.backup
+*.db-*
+*.sqlite-*
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
