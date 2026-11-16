@@ -33,6 +33,11 @@ function unauthorized(config: InternalAxiosRequestConfig): AxiosError {
 }
 
 describe('session refresh handling', () => {
+  it('uses the configured API origin, removes duplicate API prefixes, and preserves credentials', () => {
+    expect(api.defaults.baseURL).toBe('http://localhost:8000')
+    expect(api.defaults.withCredentials).toBe(true)
+  })
+
   it('attempts one startup refresh without a session hint for existing cookie sessions', async () => {
     window.localStorage.removeItem('cg.session-present')
     const request = vi.spyOn(axios, 'post').mockResolvedValue({ data: session } as never)

@@ -1,9 +1,11 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios'
 
-const localHosts = new Set(['localhost', '127.0.0.1'])
-const baseURL =
-  import.meta.env.VITE_API_URL ||
-  `http://${localHosts.has(window.location.hostname) ? window.location.hostname : '127.0.0.1'}:8000`
+const configuredBaseURL = import.meta.env.VITE_API_BASE_URL
+if (!configuredBaseURL) {
+  throw new Error('VITE_API_BASE_URL must be configured for this environment.')
+}
+
+const baseURL = configuredBaseURL.trim().replace(/\/+$/, '').replace(/\/api$/i, '')
 
 export const api = axios.create({ baseURL, withCredentials: true })
 
